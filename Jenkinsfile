@@ -11,7 +11,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t sujithdarsi/staragileprojectinsurance:v1 .'
+                    sh 'docker build -t sujithdarsi/staragileprojecthealthcare:v1 .'
                     sh 'docker images'
                 }
             }
@@ -20,8 +20,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-pwd', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                     sh "echo $PASS | docker login -u $USER --password-stdin"
-                    sh 'docker tag sujithdarsi/staragileprojectinsurance:v1 sujithdarsi/staragileprojectinsurance'
-                    sh 'docker push sujithdarsi/staragileprojectinsurance:v1'
+                    sh 'docker tag sujithdarsi/staragileprojecthealthcare:v1 sujithdarsi/staragileprojecthealthcare'
+                    sh 'docker push sujithdarsi/staragileprojecthealthcare:v1'
                 }
             }
         }
